@@ -1,4 +1,7 @@
-package ru.sinviс.server;
+package ru.sinviс.server.actions;
+
+import ru.sinviс.server.api.MovingObject;
+import ru.sinviс.server.components.Point;
 
 public class Move {
     private final MovingObject obj;
