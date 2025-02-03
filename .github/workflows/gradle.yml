@@ -2,8 +2,6 @@ name: Test Quadratic Solver
 
 on:
   pull_request:
-     branches:
-          main
 
 jobs:
   build:
