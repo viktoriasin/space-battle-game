@@ -10,7 +10,6 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.sinvic.server.api.RotatableObject;
 import ru.sinvic.server.components.Angle;
-import ru.sinvic.server.components.Point;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doThrow;

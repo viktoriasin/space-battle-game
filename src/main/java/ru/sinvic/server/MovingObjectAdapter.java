@@ -6,7 +6,6 @@ import ru.sinvic.server.components.Point;
 import ru.sinvic.server.dto.UObject;
 
 import static java.lang.Math.*;
-import static java.lang.Math.PI;
 
 public class MovingObjectAdapter implements MovingObject {
 
@@ -25,9 +24,8 @@ public class MovingObjectAdapter implements MovingObject {
     public Point getVelocity() {
         int speed = (int) obj.getValue("speed");
         Angle angle = (Angle) obj.getValue("angle");
-
-        return new Point((int) (speed * cos((angle.direction()*1.0/ angle.directionNumber())/(2 * PI))),
-                (int) (speed * sin((angle.direction()*1.0/ angle.directionNumber())/(2 * PI))));
+        return new Point((int) Math.round(speed * cos(((float) angle.direction() / angle.directionNumber()) / (2 * PI))),
+                (int) Math.round(speed * sin(((float) angle.direction() / angle.directionNumber()) / (2 * PI))));
     }
 
     @Override
