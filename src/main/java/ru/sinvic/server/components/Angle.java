@@ -1,4 +1,4 @@
-package ru.sinviс.server.components;
+package ru.sinvic.server.components;
 
 public record Angle(char direction, char directionNumber) {
     public static Angle plus(Angle angle1, Angle angle2) {

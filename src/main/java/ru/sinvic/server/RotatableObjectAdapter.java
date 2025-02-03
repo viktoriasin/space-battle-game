@@ -1,8 +1,8 @@
-package ru.sinviс.server;
+package ru.sinvic.server;
 
-import ru.sinviс.server.api.RotatableObject;
-import ru.sinviс.server.components.Angle;
-import ru.sinviс.server.dto.UObject;
+import ru.sinvic.server.api.RotatableObject;
+import ru.sinvic.server.components.Angle;
+import ru.sinvic.server.dto.UObject;
 
 public class RotatableObjectAdapter implements RotatableObject {
     private final UObject obj;
@@ -22,7 +22,7 @@ public class RotatableObjectAdapter implements RotatableObject {
     }
 
     @Override
-    public void setNewSpaceAngle(Angle angle) {
+    public void setAngle(Angle angle) {
         obj.setValue("angle", angle);
     }
 }

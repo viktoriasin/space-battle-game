@@ -1,4 +1,4 @@
-package ru.sinviс.server.dto;
+package ru.sinvic.server.dto;
 
 public interface UObject {
     Object getValue(String valueName);

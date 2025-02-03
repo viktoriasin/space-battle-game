@@ -1,4 +1,4 @@
-package ru.sinviс.server.components;
+package ru.sinvic.server.components;
 
 public record Point(int x, int y) {
     public static Point plus(Point firstPoint, Point secondPoint) {

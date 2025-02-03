@@ -1,9 +1,9 @@
-package ru.sinviс.server;
+package ru.sinvic.server;
 
-import ru.sinviс.server.api.MovingObject;
-import ru.sinviс.server.components.Angle;
-import ru.sinviс.server.components.Point;
-import ru.sinviс.server.dto.UObject;
+import ru.sinvic.server.api.MovingObject;
+import ru.sinvic.server.components.Angle;
+import ru.sinvic.server.components.Point;
+import ru.sinvic.server.dto.UObject;
 
 import static java.lang.Math.*;
 import static java.lang.Math.PI;

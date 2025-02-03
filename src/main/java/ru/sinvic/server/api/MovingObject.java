@@ -1,6 +1,6 @@
-package ru.sinviс.server.api;
+package ru.sinvic.server.api;
 
-import ru.sinviс.server.components.Point;
+import ru.sinvic.server.components.Point;
 
 public interface MovingObject {
     Point getLocation();
