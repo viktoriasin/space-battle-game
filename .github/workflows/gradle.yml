@@ -1,9 +1,7 @@
-name: Test Quadratic Solver
+name: Test space battle game
 
 on:
   pull_request:
-     branches:
-          main
 
 jobs:
   build:
