@@ -1,4 +1,4 @@
-package ru.sinvic.server.actions;
+package ru.sinvic.server.commands;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,16 +16,16 @@ import static org.mockito.Mockito.doThrow;
 
 @DisplayName("Действие Move должно ")
 @ExtendWith(MockitoExtension.class)
-class MoveActionTest {
+class MoveCommandTest {
 
     @Mock
     private MovingObject movingObject;
 
-    private MoveAction moveAction;
+    private MoveCommand moveAction;
 
     @BeforeEach
     void setUp() {
-        moveAction = new MoveAction(movingObject);
+        moveAction = new MoveCommand(movingObject);
     }
 
     @DisplayName("верно перемещать объект в пространстве")

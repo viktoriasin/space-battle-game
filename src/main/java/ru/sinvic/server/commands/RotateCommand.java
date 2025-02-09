@@ -1,12 +1,12 @@
-package ru.sinvic.server.actions;
+package ru.sinvic.server.commands;
 
 import ru.sinvic.server.api.RotatableObject;
 import ru.sinvic.server.components.Angle;
 
-public class RotateAction implements Action {
+public class RotateCommand implements Command {
     private final RotatableObject obj;
 
-    public RotateAction(RotatableObject obj) {
+    public RotateCommand(RotatableObject obj) {
         this.obj = obj;
     }
 

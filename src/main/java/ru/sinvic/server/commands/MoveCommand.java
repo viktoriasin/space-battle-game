@@ -1,13 +1,17 @@
-package ru.sinvic.server.actions;
+package ru.sinvic.server.commands;
 
 import ru.sinvic.server.api.MovingObject;
 import ru.sinvic.server.components.Point;
 
-public class MoveAction implements Action {
+public class MoveCommand implements Command {
     private final MovingObject obj;
 
-    public MoveAction(MovingObject obj) {
+    public MoveCommand(MovingObject obj) {
         this.obj = obj;
+    }
+
+    public MoveCommand() {
+        this.obj = null;
     }
 
     @Override

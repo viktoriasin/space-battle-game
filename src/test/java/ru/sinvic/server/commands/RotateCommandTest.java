@@ -1,4 +1,4 @@
-package ru.sinvic.server.actions;
+package ru.sinvic.server.commands;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -16,15 +16,15 @@ import static org.mockito.Mockito.doThrow;
 
 @DisplayName("Действие Rotate должно ")
 @ExtendWith(MockitoExtension.class)
-public class RotateActionTest {
+public class RotateCommandTest {
     @Mock
     private RotatableObject rotatableObject;
 
-    private RotateAction rotateAction;
+    private RotateCommand rotateAction;
 
     @BeforeEach
     void setUp() {
-        rotateAction = new RotateAction(rotatableObject);
+        rotateAction = new RotateCommand(rotatableObject);
     }
 
     @DisplayName("верно вращать объект в пространстве")
