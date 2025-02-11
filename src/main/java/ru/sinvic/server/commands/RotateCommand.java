@@ -4,10 +4,13 @@ import ru.sinvic.server.api.RotatableObject;
 import ru.sinvic.server.components.Angle;
 
 public class RotateCommand implements Command {
-    private final RotatableObject obj;
+    private RotatableObject obj;
 
     public RotateCommand(RotatableObject obj) {
         this.obj = obj;
+    }
+
+    public RotateCommand() {
     }
 
     @Override

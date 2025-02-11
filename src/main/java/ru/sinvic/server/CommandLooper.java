@@ -2,6 +2,9 @@ package ru.sinvic.server;
 
 import ru.sinvic.server.commands.Command;
 import ru.sinvic.server.commands.MoveCommand;
+import ru.sinvic.server.commands.RepeatTwiceCommand;
+import ru.sinvic.server.commands.RotateCommand;
+import ru.sinvic.server.exceptions.ExceptionWithLooper;
 import ru.sinvic.server.exceptions.ExceptionHandler;
 
 import java.util.ArrayDeque;
@@ -29,14 +32,19 @@ public class CommandLooper {
             try {
                 command.execute();
             } catch (Exception e) {
-                exceptionHandler.handle(command, e).execute();
+                exceptionHandler.handle(command, new ExceptionWithLooper(e, this)).execute();
             }
         }
     }
 
     public static void main(String[] args) {
         CommandLooper commandLooper = new CommandLooper(new ExceptionHandler());
-        commandLooper.schedule(new MoveCommand());
+//        // проверка, что repeatTwice вызовет обработчик логирования исключения
+//        commandLooper.schedule(new RepeatTwiceCommand(new MoveCommand()));
+//        commandLooper.loop();
+
+        // проверка последовательности команд - повторить, затем логировать
+        commandLooper.schedule(new RotateCommand());
         commandLooper.loop();
     }
 }

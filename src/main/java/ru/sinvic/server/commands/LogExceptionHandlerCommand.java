@@ -1,12 +1,12 @@
 package ru.sinvic.server.commands;
 
-import ru.sinvic.server.exceptions.CustomException;
+import ru.sinvic.server.exceptions.ExceptionWithLooper;
 
 public class LogExceptionHandlerCommand implements Command {
     private final Command command;
-    private final CustomException exception;
+    private final ExceptionWithLooper exception;
 
-    public LogExceptionHandlerCommand(Command command, CustomException exception) {
+    public LogExceptionHandlerCommand(Command command, ExceptionWithLooper exception) {
         this.command = command;
         this.exception = exception;
     }

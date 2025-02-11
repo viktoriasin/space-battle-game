@@ -1,15 +1,12 @@
 package ru.sinvic.server.exceptions;
 
 import ru.sinvic.server.CommandLooper;
-import ru.sinvic.server.commands.Command;
 
-import java.util.Queue;
-
-public class CustomException extends Exception {
+public class ExceptionWithLooper extends RuntimeException {
     private final CommandLooper looper;
 
-    public CustomException (String message, CommandLooper looper) {
-        super(message);
+    public ExceptionWithLooper(Throwable cause, CommandLooper looper) {
+        super(cause);
         this.looper = looper;
     }
 

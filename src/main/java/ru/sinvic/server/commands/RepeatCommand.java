@@ -1,9 +1,9 @@
 package ru.sinvic.server.commands;
 
-public class RepeatExceptionCommand implements Command {
-    private final Command command;
+public class RepeatCommand implements Command {
+    protected final Command command;
 
-    public RepeatExceptionCommand(Command command) {
+    public RepeatCommand(Command command) {
         this.command = command;
     }
 
