@@ -41,7 +41,7 @@ class ExceptionHandlersCommandTest {
         RepeatExceptionHandlerCommand repeatExceptionHandlerCommand = new RepeatExceptionHandlerCommand(command, exception);
         repeatExceptionHandlerCommand.execute();
         verify(exception, times(1)).getCommandLooper();
-        verify(commandLooper, times(1)).schedule(ArgumentMatchers.isA(RepeatCommand.class));
+        verify(commandLooper, times(1)).schedule(ArgumentMatchers.isA(RetryOnceCommand.class));
     }
 
     @Test

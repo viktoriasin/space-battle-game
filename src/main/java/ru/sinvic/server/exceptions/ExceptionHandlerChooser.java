@@ -2,10 +2,7 @@ package ru.sinvic.server.exceptions;
 
 import ru.sinvic.server.CommandLooper;
 import ru.sinvic.server.commands.*;
-import ru.sinvic.server.exceptions.handlers.DefaultExceptionHandler;
-import ru.sinvic.server.exceptions.handlers.ExceptionHandler;
-import ru.sinvic.server.exceptions.handlers.LogCommandExceptionHandler;
-import ru.sinvic.server.exceptions.handlers.RetryCommandExceptionHandler;
+import ru.sinvic.server.exceptions.handlers.*;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -17,21 +14,16 @@ public class ExceptionHandlerChooser {
 
     public void init(CommandLooper commandLooper) {
         Map<Class<? extends Exception>, ExceptionHandler> moveCommandMap = new HashMap<>();
-        moveCommandMap.put(NullPointerException.class, new RetryCommandExceptionHandler(commandLooper));
+        moveCommandMap.put(NullPointerException.class, new RetryTwiceCommandExceptionHandler(commandLooper));
         store.put(MoveCommand.class, moveCommandMap);
+
+        Map<Class<? extends Exception>, ExceptionHandler> retryTwiceCommandMap = new HashMap<>();
+        retryTwiceCommandMap.put(NullPointerException.class, new RetryOnceCommandExceptionHandler(commandLooper));
+        store.put(RetryTwiceCommand.class, retryTwiceCommandMap);
 
         Map<Class<? extends Exception>, ExceptionHandler> repeatCommandMap = new HashMap<>();
         repeatCommandMap.put(NullPointerException.class, new LogCommandExceptionHandler(commandLooper));
-        store.put(RepeatCommand.class, repeatCommandMap);
-
-//
-//        var rotateCommandMap = createHashMap();
-//        rotateCommandMap.put(NullPointerException.class, RepeatTwiceExceptionHandlerCommand::new);
-//        store.put(RotateCommand.class, rotateCommandMap);
-//
-//        var repeatTwiceCommandMap = createHashMap();
-//        repeatTwiceCommandMap.put(NullPointerException.class, LogAfterRepeatExceptionHandlerCommand::new);
-//        store.put(RepeatTwiceCommand.class, repeatTwiceCommandMap);
+        store.put(RetryOnceCommand.class, repeatCommandMap);
     }
 
     public ExceptionHandler chooseExceptionHandler(Class<? extends Command> commandClass, Class<? extends Exception> exceptionClass) {

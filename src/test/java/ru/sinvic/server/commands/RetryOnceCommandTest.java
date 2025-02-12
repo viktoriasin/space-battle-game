@@ -1,24 +1,21 @@
 package ru.sinvic.server.commands;
 
-import ch.qos.logback.classic.spi.LoggingEvent;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-class RepeatCommandTest {
+class RetryOnceCommandTest {
 
     @Mock
     private Command command;
 
     @Test
     void testCommand() {
-        RepeatCommand repeatCommand = new RepeatCommand(command);
-        repeatCommand.execute();
+        RetryOnceCommand retryOnceCommand = new RetryOnceCommand(command);
+        retryOnceCommand.execute();
 
         Mockito.verify(command, Mockito.times(1)).execute();
     }
