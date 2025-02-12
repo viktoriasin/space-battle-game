@@ -10,7 +10,6 @@ import java.util.Queue;
 
 public class CommandLooper {
     private final Queue<Command> commands = new ArrayDeque<>();
-    // TODO: развязать циклическую зависимость между handler и looper
     private final ExceptionHandlerChooser exceptionHandlerChooser;
 
     public CommandLooper(ExceptionHandlerChooser exceptionHandlerChooser) {
@@ -35,16 +34,5 @@ public class CommandLooper {
                         .handleException(command, e);
             }
         }
-    }
-
-    public static void main(String[] args) {
-        CommandLooper commandLooper = new CommandLooper(new ExceptionHandlerChooser());
-//        // проверка, что repeatTwice вызовет обработчик логирования исключения
-//        commandLooper.schedule(new RepeatTwiceCommand(new MoveCommand()));
-//        commandLooper.loop();
-
-        // проверка последовательности команд - повторить, затем логировать
-        commandLooper.schedule(new RotateCommand());
-        commandLooper.loop();
     }
 }
