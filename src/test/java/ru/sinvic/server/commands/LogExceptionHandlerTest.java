@@ -13,13 +13,14 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.LoggerFactory;
+import ru.sinvic.server.exceptions.handlers.LogExceptionHandler;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class LogExceptionCommandTest {
+class LogExceptionHandlerTest {
 
     private final String TEST_ERROR_MESSAGE = "testError";
 
@@ -47,9 +48,9 @@ class LogExceptionCommandTest {
 
     @Test
     public void testCommand() {
-        LogExceptionCommand logExceptionCommand = new LogExceptionCommand(command, exception);
+        LogExceptionHandler logExceptionHandler = new LogExceptionHandler(command, exception);
 
-        logExceptionCommand.execute();
+        logExceptionHandler.execute();
 
         verify(mockedAppender, times(1)).doAppend(loggingEventCaptor.capture());
         LoggingEvent loggingEvent = loggingEventCaptor.getAllValues().getFirst();

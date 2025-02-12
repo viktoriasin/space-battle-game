@@ -8,6 +8,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.sinvic.server.CommandLooper;
 import ru.sinvic.server.exceptions.ExceptionWithLooper;
+import ru.sinvic.server.exceptions.handlers.LogExceptionHandler;
 
 import static org.mockito.Mockito.*;
 
@@ -32,7 +33,7 @@ class ExceptionHandlersCommandTest {
         LogExceptionHandlerCommand logExceptionHandlerCommand = new LogExceptionHandlerCommand(command, exception);
         logExceptionHandlerCommand.execute();
         verify(exception, times(1)).getCommandLooper();
-        verify(commandLooper, times(1)).schedule(ArgumentMatchers.isA(LogExceptionCommand.class));
+        verify(commandLooper, times(1)).schedule(ArgumentMatchers.isA(LogExceptionHandler.class));
     }
 
     @Test
@@ -56,6 +57,6 @@ class ExceptionHandlersCommandTest {
         LogAfterRepeatExceptionHandlerCommand logAfterRepeatExceptionHandlerCommand = new LogAfterRepeatExceptionHandlerCommand(command, exception);
         logAfterRepeatExceptionHandlerCommand.execute();
         verify(exception, times(1)).getCommandLooper();
-        verify(commandLooper, times(1)).schedule(ArgumentMatchers.isA(LogExceptionCommand.class));
+        verify(commandLooper, times(1)).schedule(ArgumentMatchers.isA(LogExceptionHandler.class));
     }
 }

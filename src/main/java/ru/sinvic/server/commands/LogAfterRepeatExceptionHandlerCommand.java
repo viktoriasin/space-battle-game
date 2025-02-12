@@ -1,6 +1,7 @@
 package ru.sinvic.server.commands;
 
 import ru.sinvic.server.exceptions.ExceptionWithLooper;
+import ru.sinvic.server.exceptions.handlers.LogExceptionHandler;
 
 public class LogAfterRepeatExceptionHandlerCommand implements Command {
     private final Command command;
@@ -13,6 +14,6 @@ public class LogAfterRepeatExceptionHandlerCommand implements Command {
 
     @Override
     public void execute() {
-        exception.getCommandLooper().schedule(new LogExceptionCommand(command.getInnerCommand(), exception));
+        exception.getCommandLooper().schedule(new LogExceptionHandler(command.getInnerCommand(), exception));
     }
 }
