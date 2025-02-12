@@ -13,21 +13,13 @@ import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.slf4j.LoggerFactory;
-import ru.sinvic.server.exceptions.handlers.LogExceptionHandler;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-class LogExceptionHandlerTest {
+class LogCommandTest {
 
-    private final String TEST_ERROR_MESSAGE = "testError";
-
-    @Mock
-    private Command command;
-    @Mock
-    private Exception exception;
     @Mock
     private Appender mockedAppender;
     @Captor
@@ -37,7 +29,6 @@ class LogExceptionHandlerTest {
     public void setup() {
         Logger root = (Logger) LoggerFactory.getLogger(Logger.ROOT_LOGGER_NAME);
         root.addAppender(mockedAppender);
-        when(exception.getMessage()).thenReturn(TEST_ERROR_MESSAGE);
     }
 
     @AfterEach
@@ -47,15 +38,30 @@ class LogExceptionHandlerTest {
     }
 
     @Test
-    public void testCommand() {
-        LogExceptionHandler logExceptionHandler = new LogExceptionHandler(command, exception);
+    public void testLogCommandInfo() {
+        String infoMessage = "info message";
+        LogCommand logCommand = new LogCommand(infoMessage);
 
-        logExceptionHandler.execute();
+        logCommand.execute();
 
         verify(mockedAppender, times(1)).doAppend(loggingEventCaptor.capture());
         LoggingEvent loggingEvent = loggingEventCaptor.getAllValues().getFirst();
 
-        assertTrue(loggingEvent.getFormattedMessage().endsWith(TEST_ERROR_MESSAGE));
+        assertEquals(infoMessage, loggingEvent.getFormattedMessage());
+        assertEquals(Level.INFO, loggingEvent.getLevel());
+    }
+
+    @Test
+    public void testLogCommandError() {
+        String errorMessage = "error message";
+        LogCommand logCommand = new LogCommand(errorMessage, true);
+
+        logCommand.execute();
+
+        verify(mockedAppender, times(1)).doAppend(loggingEventCaptor.capture());
+        LoggingEvent loggingEvent = loggingEventCaptor.getAllValues().getFirst();
+
+        assertEquals(errorMessage, loggingEvent.getFormattedMessage());
         assertEquals(Level.ERROR, loggingEvent.getLevel());
     }
 }

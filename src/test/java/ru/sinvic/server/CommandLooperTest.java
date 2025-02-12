@@ -9,6 +9,7 @@ import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import ru.sinvic.server.commands.Command;
 import ru.sinvic.server.exceptions.ExceptionHandlerChooser;
+import ru.sinvic.server.exceptions.handlers.ExceptionHandler;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -20,7 +21,7 @@ class CommandLooperTest {
     @Mock
     private Command command;
     @Mock
-    private Command fallbackCommand;
+    private ExceptionHandler fallbackCommand;
     @Mock
     private ExceptionHandlerChooser exceptionHandlerChooser;
 
@@ -61,6 +62,6 @@ class CommandLooperTest {
         commandLooper.loop();
         Mockito.verify(command, times(1)).execute();
         Mockito.verify(exceptionHandlerChooser, times(1)).chooseExceptionHandler(any(), any());
-        Mockito.verify(fallbackCommand, times(1)).execute();
+        Mockito.verify(fallbackCommand, times(1)).handleException(any(), any());
     }
 }
